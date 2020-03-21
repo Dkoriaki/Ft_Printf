@@ -28,6 +28,8 @@ int		main(void)
 	//ft_printf("%-5%|\n%2%");
 	//printf("Vrai = %d", printf("%-5c\n", 'D'));
 	//printf("moi  = %d", ft_printf("%-5c\n", 'D'));
-	ft_printf("%-20s|", "yo les kheys");
+	//printf("  M = %d\n", ft_printf("%-32s", NULL));
+	//printf("  V = %d\n", printf("%-32s", NULL));
+	printf("%c", NULL);
 	return (0);
 }

@@ -86,7 +86,7 @@ int		ft_check_param(const char *str, va_list p_info, t_flags *flag)
 	//if (flag->flag == 'x' || flag->flag == 'X')
 	//	written_c += ft_treat_hexa(p_info, flag->flag);
 	//if (flag->flag == 'u')
-		written_c += ft_treat_unsigned(p_info);
+	//	written_c += ft_treat_unsigned(p_info);
 	if (flag->flag == '%')
 		written_c += ft_treat_percent(flag);
 	//if (flag->flag == 'p')

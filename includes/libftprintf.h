@@ -17,15 +17,6 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
-//                  UTILS                 //
-
-int		ft_putchar(char c);
-int		ft_putstr(char *str);
-int		ft_atoi(const char *str);
-int		ft_nbrlen(int nb);
-int		ft_putnbr(int nb);
-int		ft_width(const char *str);   //Dans la fonction "ft_treat_flags"
-int		ft_strlen(char *str);        // dans treat_str
 
 //                  Creation de la structure Flag              //
 
@@ -38,6 +29,16 @@ typedef struct	s_flags
 	int		zero;
 	int		minus;
 }				t_flags;
+
+//                  UTILS                 //
+
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_atoi(const char *str);
+int		ft_nbrlen(int nb);
+int		ft_putnbr(int nb);
+int		ft_width(const char *str);   //Dans la fonction "ft_treat_flags"
+int		ft_strlen(char *str, t_flags *flag);        // dans treat_str
 
 //                  Fonctions Principales          //
 
@@ -53,6 +54,7 @@ t_flags		ft_init_flag(void);
 //		     Treat Flag              //
 
 void		ft_treat_flags(t_flags *flag, const char *str, va_list p_info);
+void		ft_treat_flags_first(t_flags *flag, const char *str, va_list p_info); // Pour gagner des lignes
 
 //		     Treat str        //
 

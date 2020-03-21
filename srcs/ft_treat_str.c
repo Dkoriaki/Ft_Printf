@@ -12,13 +12,18 @@
 
 #include "../includes/libftprintf.h"
 
-int		ft_strlen(char *str)
+int		ft_strlen(char *str, t_flags *flag)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-		i++;
+	if (str)
+	{
+		while (str[i])
+			i++;
+		if (flag->precision && flag->precision_value < i)
+			return(flag->precision_value);
+	}
 	return (i);
 }
 
@@ -27,7 +32,7 @@ int		ft_putstr_len(char *str, int len)
 	int	i;
 
 	i = 0;
-	while (i < len)
+	while (i < len && str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
@@ -46,7 +51,7 @@ int		ft_treat_str_flag(t_flags *flag, char *str)
 			written_c += ft_putstr_len(str, flag->precision_value);
 		else
 			written_c += ft_putstr(str);
-		while (flag->width > ft_strlen(str))
+		while (flag->width > ft_strlen(str, flag))
 		{
 			written_c += ft_putchar(' ');
 			flag->width--;
@@ -54,14 +59,16 @@ int		ft_treat_str_flag(t_flags *flag, char *str)
 	}
 	if (!flag->minus)
 	{
-		while (flag->width > flag->precision_value)
+		while (flag->width > ft_strlen(str, flag))
 		{
 			written_c += ft_putchar(' ');
 			flag->width--;
 		}
-		written_c += ft_putstr_len(str, flag->precision_value);
+		if (flag->precision)
+			written_c += ft_putstr_len(str, flag->precision_value);
+		else
+			written_c += ft_putstr(str);
 	}
-	printf("\npopopopo\n");
 	return(written_c);
 }
 
@@ -72,7 +79,8 @@ int		ft_treat_str(va_list p_info, t_flags *flag)
 
 	written_c = 0;
 	string = va_arg(p_info, char *);
+	if (!string)
+		string = "(null)";
 	written_c += ft_treat_str_flag(flag, string);
-	printf("POOOOOOOOOOOOOOOO");
 	return (written_c);
 }

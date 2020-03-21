@@ -43,7 +43,7 @@ void		ft_treat_flags(t_flags *flag,const char *str, va_list p_info)
 
 	i = 1;
 	ft_treat_flags_first(flag, str, p_info);
-	while (ft_check_conv(str[i]) == 0 && str[i])
+	while (ft_check_conv(str[i]) == 0)
 	{
 		if (str[i] == '*' && flag->precision == 1)
 			flag->precision_value = va_arg(p_info, int);
