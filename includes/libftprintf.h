@@ -35,7 +35,7 @@ typedef struct	s_flags
 int		ft_putchar(char c);
 int		ft_putstr(char *str);
 int		ft_atoi(const char *str);
-int		ft_nbrlen(int nb);
+int		ft_nbrlen(long int nb);
 int		ft_putnbr(int nb);
 int		ft_width(const char *str);   //Dans la fonction "ft_treat_flags"
 int		ft_strlen(char *str, t_flags *flag);        // dans treat_str
@@ -69,6 +69,9 @@ int		ft_treat_char_flag(t_flags *flag, char c);
 
 //		     Treat int         //
 
+int		ft_treat_int(va_list p_info, t_flags *flag);
+int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb);
+
 //		     Treat hexa        //
 
 //		     Treat unsigned int      //
@@ -81,7 +84,6 @@ int		ft_treat_percent_flag(t_flags *flag);
 //		     Treat pointer       //
 
 
-int		ft_treat_int(va_list p_info);
 int		ft_putnbr_hexa(long long nb, char c);
 int		ft_treat_hexa(va_list p_info, char c);
 int		ft_putnbr_unsigned(unsigned long long nb);

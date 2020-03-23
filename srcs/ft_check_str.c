@@ -81,8 +81,8 @@ int		ft_check_param(const char *str, va_list p_info, t_flags *flag)
 		written_c += ft_treat_str(p_info, flag);
 	if (flag->flag == 'c')
 		written_c += ft_treat_char(p_info, flag);
-	//if (flag->flag == 'd' || flag->flag == 'i')
-	//	written_c += ft_treat_int(p_info);
+	if (flag->flag == 'd' || flag->flag == 'i')
+		written_c += ft_treat_int(p_info, flag);
 	//if (flag->flag == 'x' || flag->flag == 'X')
 	//	written_c += ft_treat_hexa(p_info, flag->flag);
 	//if (flag->flag == 'u')

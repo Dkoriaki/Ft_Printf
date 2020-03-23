@@ -44,7 +44,7 @@ int		ft_atoi(const char *str)
 	return (nb * negatif);
 }
 
-int	ft_nbrlen(int nb)
+int	ft_nbrlen(long int nb)
 {
 	unsigned int	nui;
 	int				i;

@@ -30,6 +30,8 @@ int		main(void)
 	//printf("moi  = %d", ft_printf("%-5c\n", 'D'));
 	//printf("  M = %d\n", ft_printf("%-32s", NULL));
 	//printf("  V = %d\n", printf("%-32s", NULL));
-	printf("%c", NULL);
+	//printf("%8.5d\n", 123);
+	printf("%-8.5d|\n", 123);
+	ft_printf("%-8.5d", 123);
 	return (0);
 }
