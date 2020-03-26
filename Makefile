@@ -14,9 +14,17 @@ INC		=	./includes/libftprintf.h
 
 NAME	=	libftprintf.a
 
-SRCS	=	./srcs/ft_putchar.c \
-			./srcs/ft_printf.c \
-			./srcs/ft_check_param.c \
+SRCS	=	./srcs/ft_printf.c \
+			./srcs/ft_check_str.c \
+			./srcs/ft_treat_char.c \
+			./srcs/ft_treat_flags.c \
+			./srcs/ft_treat_hexa.c \
+			./srcs/ft_treat_int.c \
+			./srcs/ft_treat_percent.c \
+			./srcs/ft_treat_pointer.c \
+			./srcs/ft_treat_str.c \
+			./srcs/ft_treat_unsigned.c \
+			./srcs/ft_utils.c
 
 HEADER	=	./includes/libftprintf.h
 
