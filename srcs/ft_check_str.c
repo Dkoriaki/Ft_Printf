@@ -83,13 +83,13 @@ int		ft_check_param(const char *str, va_list p_info, t_flags *flag)
 		written_c += ft_treat_char(p_info, flag);
 	if (flag->flag == 'd' || flag->flag == 'i')
 		written_c += ft_treat_int(p_info, flag);
-	//if (flag->flag == 'x' || flag->flag == 'X')
-	//	written_c += ft_treat_hexa(p_info, flag->flag);
-	//if (flag->flag == 'u')
-	//	written_c += ft_treat_unsigned(p_info);
+	if (flag->flag == 'x' || flag->flag == 'X')
+		written_c += ft_treat_hexa(p_info, flag->flag, flag);
+	if (flag->flag == 'u')
+		written_c += ft_treat_unsigned(p_info, flag);
 	if (flag->flag == '%')
 		written_c += ft_treat_percent(flag);
-	//if (flag->flag == 'p')
-	//	written_c += ft_treat_pointer(p_info);
+	if (flag->flag == 'p')
+		written_c += ft_treat_pointer(p_info, flag);
 	return (written_c);
 }

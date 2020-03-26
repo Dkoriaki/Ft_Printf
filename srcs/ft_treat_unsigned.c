@@ -12,10 +12,10 @@
 
 #include "../includes/libftprintf.h"
 
-int		ft_putnbr_unsigned(unsigned long long nb)
+int		ft_putnbr_unsigned(long long nb)
 {
 	static int len;
-
+	
 	if (nb > 9)
 	{
 		ft_putnbr_unsigned(nb / 10);
@@ -29,13 +29,62 @@ int		ft_putnbr_unsigned(unsigned long long nb)
 	return (len);
 }
 
-int		ft_treat_unsigned(va_list p_info)
+int		ft_treat_unsigned_flags(unsigned long long nb, t_flags *flag, int len_nb)
+{
+	int	written_c;
+	int	save_p_v;
+
+	written_c = 0;
+	save_p_v = flag->p_value;
+	if (flag->precision && flag->width)
+		flag->zero = 0;
+	if (nb < 0)
+		flag->width--;
+	if (flag->minus)
+	{
+		while (flag->p_value > len_nb)
+		{
+			written_c += ft_putchar('0');
+			flag->p_value--;
+		}
+		written_c += ft_putnbr_unsigned(nb);
+		while (flag->width > save_p_v && flag->width > len_nb)
+		{
+			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
+			flag->width--;
+		}
+	}
+	if (!flag->minus)
+	{
+		while (flag->width > flag->p_value && flag->width > len_nb)
+		{
+			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
+			flag->width--;
+		}
+		while (flag->p_value > len_nb)
+		{
+			if (nb < 0)
+			{
+				written_c += ft_putchar('-');
+				nb = -nb;
+			}
+			written_c += ft_putchar('0');
+			flag->p_value--;
+		}
+		written_c += ft_putnbr_unsigned(nb);
+	}
+	return (written_c);
+}
+
+int		ft_treat_unsigned(va_list p_info, t_flags *flag)
 {
 	int						written_c;
-	unsigned long long int nb;
+	unsigned long long nb;
+	int len_nb;
 
 	written_c = 0;
 	nb = va_arg(p_info, unsigned long long int);
-	written_c += ft_putnbr_unsigned(nb);
+	len_nb = ft_nbrlen(nb, 10);
+	written_c += ft_treat_unsigned_flags(nb, flag, len_nb);
 	return (written_c);
 }

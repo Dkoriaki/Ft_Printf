@@ -21,8 +21,8 @@ int		ft_strlen(char *str, t_flags *flag)
 	{
 		while (str[i])
 			i++;
-		if (flag->precision && flag->precision_value < i)
-			return(flag->precision_value);
+		if (flag->precision && flag->p_value < i)
+			return(flag->p_value);
 	}
 	return (i);
 }
@@ -48,7 +48,7 @@ int		ft_treat_str_flag(t_flags *flag, char *str)
 	if (flag->minus)
 	{
 		if (flag->precision)
-			written_c += ft_putstr_len(str, flag->precision_value);
+			written_c += ft_putstr_len(str, flag->p_value);
 		else
 			written_c += ft_putstr(str);
 		while (flag->width > ft_strlen(str, flag))
@@ -65,7 +65,7 @@ int		ft_treat_str_flag(t_flags *flag, char *str)
 			flag->width--;
 		}
 		if (flag->precision)
-			written_c += ft_putstr_len(str, flag->precision_value);
+			written_c += ft_putstr_len(str, flag->p_value);
 		else
 			written_c += ft_putstr(str);
 	}

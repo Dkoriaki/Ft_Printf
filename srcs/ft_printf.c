@@ -31,7 +31,8 @@ int		main(void)
 	//printf("  M = %d\n", ft_printf("%-32s", NULL));
 	//printf("  V = %d\n", printf("%-32s", NULL));
 	//printf("%8.5d\n", 123);
-	printf("%-8.5d|\n", 123);
-	ft_printf("%-8.5d", 123);
+	char *str;
+	printf("vrai = %d\n", printf("  Salut, je m'appel :%20s j'ai %-43.50d ans%% %p|\n","daniel", 18, str));
+	printf("moi  = %d\n", ft_printf("  Salut, je m'appel :%20s j'ai %-43.50d ans%% %p|\n","daniel", 18, str));
 	return (0);
 }

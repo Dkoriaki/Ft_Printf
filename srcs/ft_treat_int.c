@@ -15,17 +15,28 @@
 int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb)
 {
 	int	written_c;
+	int	save_p_v;
 
 	written_c = 0;
+	save_p_v = flag->p_value;
+	if (flag->precision && flag->width)
+		flag->zero = 0;
+	if (nb < 0)
+		flag->width--;
 	if (flag->minus)
 	{
-		while (flag->precision_value > len_nb)
+		while (flag->p_value > len_nb)
 		{
+			if (nb < 0)
+			{
+				written_c += ft_putchar('-');
+				nb = -nb;
+			}
 			written_c += ft_putchar('0');
-			flag->precision_value--;
+			flag->p_value--;
 		}
 		written_c += ft_putnbr(nb);
-		while (flag->width > flag->precision_value)
+		while (flag->width > save_p_v && flag->width > len_nb)
 		{
 			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
 			flag->width--;
@@ -33,6 +44,27 @@ int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb)
 	}
 	if (!flag->minus)
 	{
+		while (flag->width > flag->p_value && flag->width > len_nb)
+		{
+			if (nb < 0 && !flag->precision)
+			{
+				written_c += ft_putchar('-');
+				nb = -nb;
+			}
+			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
+			flag->width--;
+		}
+		while (flag->p_value > len_nb)
+		{
+			if (nb < 0)
+			{
+				written_c += ft_putchar('-');
+				nb = -nb;
+			}
+			written_c += ft_putchar('0');
+			flag->p_value--;
+		}
+		written_c += ft_putnbr(nb);
 	}
 	return (written_c);
 }
@@ -45,7 +77,7 @@ int		ft_treat_int(va_list p_info, t_flags *flag)
 
 	written_c = 0;
 	nb = va_arg(p_info, int);
-	len_nb = ft_nbrlen(nb);
+	len_nb = ft_nbrlen(nb, 10);
 	written_c += ft_treat_int_flags(nb, flag, len_nb);
 	return (written_c);
 }

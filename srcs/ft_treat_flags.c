@@ -24,7 +24,7 @@ void		ft_treat_flags_first(t_flags *flag, const char *str, va_list p_info)
 		if ((str[i] >= '1' && str[i] <= '9') && flag->precision != 1)
 		{
 			flag->width = ft_width(&str[i]);
-			i += ft_nbrlen(flag->width);
+			i += ft_nbrlen(flag->width, 10);
 		}
 
 		if (str[i] == '-')
@@ -46,11 +46,11 @@ void		ft_treat_flags(t_flags *flag,const char *str, va_list p_info)
 	while (ft_check_conv(str[i]) == 0 && str[i])
 	{
 		if (str[i] == '*' && flag->precision == 1)
-			flag->precision_value = va_arg(p_info, int);
+			flag->p_value = va_arg(p_info, int);
 		if ((str[i] >= '0' && str[i] <= '9') && flag->precision == 1)
 		{
-			flag->precision_value = ft_width(&str[i]);
-			i += ft_nbrlen(flag->precision_value);
+			flag->p_value = ft_width(&str[i]);
+			i += ft_nbrlen(flag->p_value, 10);
 		}
 		i++;
 	}

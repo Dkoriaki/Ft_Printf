@@ -44,9 +44,9 @@ int		ft_atoi(const char *str)
 	return (nb * negatif);
 }
 
-int	ft_nbrlen(long int nb)
+int	ft_nbrlen(long long int nb, int base)
 {
-	unsigned int	nui;
+	unsigned long long int		nui;
 	int				i;
 
 	i = 0;
@@ -55,13 +55,13 @@ int	ft_nbrlen(long int nb)
 	if (nb < 0)
 	{
 		nui = -nb;
-		i++;
+		//i++;
 	}
 	else
 		nui = nb;
 	while (nui)
 	{
-		nui /= 10;
+		nui /= base;
 		i++;
 	}
 	return (i);
