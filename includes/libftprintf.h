@@ -24,7 +24,7 @@ typedef struct	s_flags
 {
 	char	flag;
 	int		precision;
-	int		precision_value;
+	int		p_value;
 	int		width;
 	int		zero;
 	int		minus;
@@ -35,7 +35,7 @@ typedef struct	s_flags
 int		ft_putchar(char c);
 int		ft_putstr(char *str);
 int		ft_atoi(const char *str);
-int		ft_nbrlen(long int nb);
+int		ft_nbrlen(long long int nb, int base);
 int		ft_putnbr(int nb);
 int		ft_width(const char *str);   //Dans la fonction "ft_treat_flags"
 int		ft_strlen(char *str, t_flags *flag);        // dans treat_str
@@ -74,7 +74,13 @@ int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb);
 
 //		     Treat hexa        //
 
+int		ft_treat_hexa(va_list p_info, char c, t_flags *flag);
+int		ft_treat_hexa_flags(unsigned long long nb, t_flags *flag, int len_nb, char c);
 //		     Treat unsigned int      //
+
+int		ft_treat_unsigned(va_list p_info, t_flags *flag);
+int		ft_treat_unsigned_flags(unsigned long long nb, t_flags *flag, int len_nb);
+int		ft_putnbr_unsigned(long long nb);
 
 //		     Treat percent      //
 
@@ -84,11 +90,8 @@ int		ft_treat_percent_flag(t_flags *flag);
 //		     Treat pointer       //
 
 
-int		ft_putnbr_hexa(long long nb, char c);
-int		ft_treat_hexa(va_list p_info, char c);
-int		ft_putnbr_unsigned(unsigned long long nb);
-int		ft_treat_unsigned(va_list p_info);
 int		ft_putnbr_pointer(unsigned long long pointer);
-int		ft_treat_pointer(va_list p_info);
+int		ft_treat_pointer_flags(unsigned long long nb, t_flags *flag, int len_nb);
+int		ft_treat_pointer(va_list p_info, t_flags *flag);
 
 #endif
