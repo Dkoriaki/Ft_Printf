@@ -60,7 +60,8 @@ void		ft_treat_flags_first(t_flags *flag, const char *str, va_list p_info); // P
 
 int		ft_treat_str(va_list p_info, t_flags *flag);
 int		ft_treat_str_flag(t_flags *flag, char *str);
-int		ft_putstr_len(char *str, int len);
+int		ft_treat_str_minus(t_flags *flag, char *str, int str_len);
+int		ft_putstr_len(char *str, int p_len, int str_len);
 
 //		     Treat char        //
 
@@ -75,11 +76,14 @@ int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb);
 //		     Treat hexa        //
 
 int		ft_treat_hexa(va_list p_info, char c, t_flags *flag);
-int		ft_treat_hexa_flags(unsigned long long nb, t_flags *flag, int len_nb, char c);
+int		ft_hexa_without_m(unsigned long nb, t_flags *flag, int len_nb, char c);
+int		ft_hexa_minus(unsigned long nb, t_flags *flag, int len_nb, char c);
+int		ft_putnbr_hexa(unsigned long nb, char c);
+
 //		     Treat unsigned int      //
 
 int		ft_treat_unsigned(va_list p_info, t_flags *flag);
-int		ft_treat_unsigned_flags(unsigned long long nb, t_flags *flag, int len_nb);
+int		ft_treat_unsigned_flags(unsigned long nb, t_flags *flag, int len_nb);
 int		ft_putnbr_unsigned(long long nb);
 
 //		     Treat percent      //
@@ -90,8 +94,8 @@ int		ft_treat_percent_flag(t_flags *flag);
 //		     Treat pointer       //
 
 
-int		ft_putnbr_pointer(unsigned long long pointer);
-int		ft_treat_pointer_flags(unsigned long long nb, t_flags *flag, int len_nb);
+int		ft_putnbr_pointer(unsigned long pointer);
+int		ft_treat_pointer_flags(unsigned long nb, t_flags *flag, int len_nb);
 int		ft_treat_pointer(va_list p_info, t_flags *flag);
 
 #endif

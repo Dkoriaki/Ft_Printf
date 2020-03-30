@@ -12,7 +12,7 @@
 
 #include "../includes/libftprintf.h"
 
-int		ft_putnbr_pointer(unsigned long long pointer)
+int		ft_putnbr_pointer(unsigned long pointer)
 {
 	static int	len;
 	char		*base;
@@ -32,7 +32,7 @@ int		ft_putnbr_pointer(unsigned long long pointer)
 	return (len);
 }
 
-int		ft_treat_pointer_flags(unsigned long long nb, t_flags *flag, int len_nb)
+int		ft_treat_pointer_flags(unsigned long nb, t_flags *flag, int len_nb)
 {
 	int	written_c;
 	int	save_p_v;
@@ -77,13 +77,13 @@ int		ft_treat_pointer_flags(unsigned long long nb, t_flags *flag, int len_nb)
 int		ft_treat_pointer(va_list p_info, t_flags *flag)
 {
 	int						written_c;
-	unsigned long long	pointer;
+	unsigned long	pointer;
 	int			len_nb;
 
 	written_c = 0;
 	written_c += ft_putstr("0x");
 	flag->width -= 2;
-	pointer = va_arg(p_info, unsigned long long int);
+	pointer = va_arg(p_info, unsigned long int);
 	len_nb = ft_nbrlen(pointer, 16);
 	written_c += ft_treat_pointer_flags(pointer, flag, len_nb);
 	return (written_c);

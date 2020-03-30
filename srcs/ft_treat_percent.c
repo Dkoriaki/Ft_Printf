@@ -21,7 +21,7 @@ int		ft_treat_percent_flag(t_flags *flag)
 		written_c += ft_putchar('%');
 	while (flag->width > 1)
 	{
-		written_c += ft_putchar(' ');
+		written_c += (flag->zero ) ? ft_putchar('0') : ft_putchar(' ');
 		flag->width--;
 	}
 	if (!flag->minus)

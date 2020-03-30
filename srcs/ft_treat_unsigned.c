@@ -29,7 +29,7 @@ int		ft_putnbr_unsigned(long long nb)
 	return (len);
 }
 
-int		ft_treat_unsigned_flags(unsigned long long nb, t_flags *flag, int len_nb)
+int		ft_treat_unsigned_flags(unsigned long nb, t_flags *flag, int len_nb)
 {
 	int	written_c;
 	int	save_p_v;
@@ -79,11 +79,11 @@ int		ft_treat_unsigned_flags(unsigned long long nb, t_flags *flag, int len_nb)
 int		ft_treat_unsigned(va_list p_info, t_flags *flag)
 {
 	int						written_c;
-	unsigned long long nb;
+	unsigned long nb;
 	int len_nb;
 
 	written_c = 0;
-	nb = va_arg(p_info, unsigned long long int);
+	nb = va_arg(p_info, unsigned long int);
 	len_nb = ft_nbrlen(nb, 10);
 	written_c += ft_treat_unsigned_flags(nb, flag, len_nb);
 	return (written_c);

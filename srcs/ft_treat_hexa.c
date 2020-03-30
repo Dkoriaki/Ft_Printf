@@ -12,7 +12,7 @@
 
 #include "../includes/libftprintf.h"
 
-int		ft_putnbr_hexa(long long nb, char c)
+int		ft_putnbr_hexa(unsigned long nb, char c)
 {
 	char		*base_x;
 	char		*base_X;
@@ -37,73 +37,61 @@ int		ft_putnbr_hexa(long long nb, char c)
 	return (len);
 }
 
-int		ft_treat_hexa_flags(unsigned long long nb, t_flags *flag, int len_nb ,char c)
+int		ft_hexa_without_m(unsigned long nb, t_flags *flag, int len_nb ,char c)
 {
 	int	written_c;
 	int	save_p_v;
 
 	written_c = 0;
 	save_p_v = flag->p_value;
-	if (flag->precision && flag->width)
-		flag->zero = 0;
-	if (nb < 0)
+	while (flag->width > flag->p_value && flag->width > len_nb)
+	{
+		written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
 		flag->width--;
-	if (flag->minus)
-	{
-		while (flag->p_value > len_nb)
-		{
-			if (nb < 0)
-			{
-				written_c += ft_putchar('-');
-				nb = -nb;
-			}
-			written_c += ft_putchar('0');
-			flag->p_value--;
-		}
-		written_c += ft_putnbr_hexa(nb, c);
-		while (flag->width > save_p_v && flag->width > len_nb)
-		{
-			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
-			flag->width--;
-		}
 	}
-	if (!flag->minus)
+	while (flag->p_value > len_nb)
 	{
-		while (flag->width > flag->p_value && flag->width > len_nb)
-		{
-			if (nb < 0 && !flag->precision)
-			{
-				written_c += ft_putchar('-');
-				nb = -nb;
-			}
-			written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
-			flag->width--;
-		}
-		while (flag->p_value > len_nb)
-		{
-			if (nb < 0)
-			{
-				written_c += ft_putchar('-');
-				nb = -nb;
-			}
-			written_c += ft_putchar('0');
-			flag->p_value--;
-		}
-		written_c += ft_putnbr_hexa(nb, c);
+		written_c += ft_putchar('0');
+		flag->p_value--;
+	}
+	written_c += ft_putnbr_hexa(nb, c);
+	return (written_c);
+}
+
+int		ft_hexa_minus(unsigned long nb, t_flags *flag, int len_nb, char c)
+{
+	int	save_p_v;
+	int	written_c;
+
+	save_p_v = flag->p_value;
+	written_c = 0;
+	while (flag->p_value > len_nb)
+	{
+		written_c += ft_putchar('0');
+		flag->p_value--;
+	}
+	written_c += ft_putnbr_hexa(nb, c);
+	while (flag->width > save_p_v && flag->width > len_nb)
+	{
+		written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
+		flag->width--;
 	}
 	return (written_c);
 }
 
 int		ft_treat_hexa(va_list p_info, char c, t_flags *flag)
 {
-	unsigned long long	nb;
+	unsigned long	nb;
 	int written_c;
 	int	len_nb;
 
 	written_c = 0;
 	nb = va_arg(p_info, long long int);
 	len_nb = ft_nbrlen(nb, 16);
-	written_c += ft_treat_hexa_flags(nb, flag, len_nb, c);
+	if (flag->minus)
+		written_c += ft_hexa_minus(nb, flag, len_nb, c);
+	else
+		written_c += ft_hexa_without_m(nb , flag, len_nb, c);
 	return (written_c);
 }
 	
