@@ -12,9 +12,9 @@
 
 #include "../includes/libftprintf.h"
 
-int	ft_putchar(char c)
+int		ft_putchar(char c)
 {
-	write (1, &c, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
@@ -44,18 +44,20 @@ int		ft_atoi(const char *str)
 	return (nb * negatif);
 }
 
-int	ft_nbrlen(long long int nb, int base)
+int		ft_nbrlen(long long int nb, int base, t_flags *flag)
 {
-	unsigned long long int		nui;
-	int				i;
+	unsigned long long		nui;
+	int						i;
 
 	i = 0;
+	if (nb == 0 && (flag->precision))
+		return (0);
 	if (nb == 0)
 		return (1);
 	if (nb < 0)
 	{
 		nui = -nb;
-		//i++;
+		i++;
 	}
 	else
 		nui = nb;
@@ -80,27 +82,23 @@ int		ft_putstr(char *str)
 	return (i);
 }
 
-int		ft_putnbr(int nb)
+void	ft_putnbr(int nb, t_flags *flag, int len_nb)
 {
 	long int	nbr;
-	static int	len;
 
 	nbr = nb;
+	if (nbr == 0 && flag->precision && len_nb == 0)
+		return ;
 	if (nbr < 0)
 	{
 		ft_putchar('-');
 		nbr = -nbr;
-		len++;
 	}
 	if (nbr > 9)
 	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
+		ft_putnbr(nbr / 10, flag, len_nb);
+		ft_putnbr(nbr % 10, flag, len_nb);
 	}
 	else
-	{
 		ft_putchar(nbr + 48);
-		len++;
-	}
-	return (len);
 }

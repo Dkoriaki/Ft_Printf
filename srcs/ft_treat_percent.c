@@ -17,11 +17,13 @@ int		ft_treat_percent_flag(t_flags *flag)
 	int	written_c;
 
 	written_c = 0;
+	if ((flag->precision && flag->width) || (flag->minus && flag->zero))
+		flag->zero = 0;
 	if (flag->minus)
 		written_c += ft_putchar('%');
 	while (flag->width > 1)
 	{
-		written_c += (flag->zero ) ? ft_putchar('0') : ft_putchar(' ');
+		written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
 		flag->width--;
 	}
 	if (!flag->minus)

@@ -33,8 +33,10 @@ t_flags	ft_init_flag(void)
 	t_flags	flag;
 
 	flag.precision = 0;
+	flag.w_here = 0;
 	flag.width = 0;
 	flag.zero = 0;
+	flag.p_value = 0;
 	flag.minus = 0;
 	return (flag);
 }
