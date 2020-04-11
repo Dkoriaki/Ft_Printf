@@ -24,7 +24,7 @@ void		ft_treatflags_2(t_flags *flag, const char *str, va_list p_info)
 		if ((str[i] >= '1' && str[i] <= '9') && flag->precision != 1)
 		{
 			flag->width = ft_width(&str[i]);
-			i += ft_nbrlen(flag->width, 10, flag);
+			i += ft_nbrlen(flag->width, 10, flag) - 1;
 			flag->w_here = 1;
 		}
 		if (str[i] == '-')
@@ -52,7 +52,7 @@ void		ft_treat_flags(t_flags *flag, const char *str, va_list p_info)
 			if ((str[i] >= '0' && str[i] <= '9') && flag->precision == 1)
 			{
 				flag->p_value = ft_width(&str[i]);
-				i += ft_nbrlen(flag->p_value, 10, flag);
+				i += ft_nbrlen(flag->p_value, 10, flag) - 1;
 			}
 		}
 		i++;
