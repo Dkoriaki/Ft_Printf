@@ -12,6 +12,29 @@
 
 #include "../includes/libftprintf.h"
 
+int			ft_flaglen(long int nb)
+{
+	unsigned long long		nui;
+	int						i;
+
+	i = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+	{
+		nui = -nb;
+		i++;
+	}
+	else
+		nui = nb;
+	while (nui)
+	{
+		nui /= 10;
+		i++;
+	}
+	return (i);
+}
+
 void		ft_treatflags_2(t_flags *flag, const char *str, va_list p_info)
 {
 	int	i;
@@ -19,18 +42,18 @@ void		ft_treatflags_2(t_flags *flag, const char *str, va_list p_info)
 	i = 1;
 	while (ft_check_conv(str[i]) == 0 && str[i])
 	{
+		if (str[i] == '0')
+			flag->zero = 1;
 		if (str[i] == '*' && flag->precision != 1)
 			flag->width = va_arg(p_info, int);
 		if ((str[i] >= '1' && str[i] <= '9') && flag->precision != 1)
 		{
 			flag->width = ft_width(&str[i]);
-			i += ft_nbrlen(flag->width, 10, flag) - 1;
+			i += ft_flaglen(flag->width) - 1;
 			flag->w_here = 1;
 		}
 		if (str[i] == '-')
 			flag->minus = 1;
-		if (str[i] == '0')
-			flag->zero = 1;
 		if (str[i] == '.')
 			flag->precision = 1;
 		i++;
@@ -52,7 +75,7 @@ void		ft_treat_flags(t_flags *flag, const char *str, va_list p_info)
 			if ((str[i] >= '0' && str[i] <= '9') && flag->precision == 1)
 			{
 				flag->p_value = ft_width(&str[i]);
-				i += ft_nbrlen(flag->p_value, 10, flag) - 1;
+				i += ft_flaglen(flag->p_value) - 1;
 			}
 		}
 		i++;
