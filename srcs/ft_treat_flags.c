@@ -42,7 +42,7 @@ void		ft_treatflags_2(t_flags *flag, const char *str, va_list p_info)
 	i = 1;
 	while (ft_check_conv(str[i]) == 0 && str[i])
 	{
-		if (str[i] == '0')
+		if (str[i] == '0' && str[i - 1] == '%')
 			flag->zero = 1;
 		if (str[i] == '*' && flag->precision != 1)
 			flag->width = va_arg(p_info, int);
