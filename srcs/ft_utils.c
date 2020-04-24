@@ -44,10 +44,10 @@ int		ft_atoi(const char *str)
 	return (nb * negatif);
 }
 
-int		ft_nbrlen(long long int nb, int base, t_flags *flag)
+int		ft_nbrlen(long int nb, int base, t_flags *flag)
 {
-	unsigned long long		nui;
-	int						i;
+	unsigned long		nui;
+	int					i;
 
 	i = 0;
 	if (nb == 0 && (flag->precision))

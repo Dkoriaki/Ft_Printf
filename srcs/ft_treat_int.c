@@ -19,8 +19,8 @@ int		ft_treat_int_minus(int nb, t_flags *flag, int len_nb)
 
 	written_c = 0;
 	save_p = flag->p_value;
-	(nb < 0 && save_p > len_nb) ? flag->width-- : flag->width;
-	while (flag->p_value > len_nb)
+	(nb < 0 && save_p >= len_nb) ? flag->width-- : flag->width;
+	while (flag->p_value > len_nb || (nb < 0 && flag->p_value == len_nb))
 	{
 		if (nb < 0)
 		{
@@ -48,13 +48,13 @@ int		ft_treat_int_flags(int nb, t_flags *flag, int len_nb)
 
 	written_c = 0;
 	save_p = flag->p_value;
-	(nb < 0 && save_p > len_nb) ? flag->width-- : flag->width;
+	(nb < 0 && save_p >= len_nb) ? flag->width-- : flag->width;
 	while (flag->width > save_p && flag->width > len_nb)
 	{
 		written_c += (flag->zero) ? ft_putchar('0') : ft_putchar(' ');
 		flag->width--;
 	}
-	while (flag->p_value > len_nb)
+	while (flag->p_value > len_nb || (nb < 0 && flag->p_value == len_nb))
 	{
 		if (nb < 0)
 		{

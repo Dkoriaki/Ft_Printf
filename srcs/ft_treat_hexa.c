@@ -80,12 +80,12 @@ int		ft_hexa_minus(unsigned long nb, t_flags *flag, int len, char c)
 
 int		ft_treat_hexa(va_list p_info, char c, t_flags *flag)
 {
-	unsigned long	nb;
+	unsigned int	nb;
 	int				written_c;
 	int				len_nb;
 
 	written_c = 0;
-	nb = va_arg(p_info, long long int);
+	nb = va_arg(p_info, unsigned int);
 	len_nb = ft_nbrlen(nb, 16, flag);
 	if ((flag->precision && flag->width) || (flag->minus && flag->zero))
 		flag->zero = 0;

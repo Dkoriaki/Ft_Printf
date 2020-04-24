@@ -72,11 +72,11 @@ int			ft_unsigned_flags(unsigned long nb, t_flags *flag, int len_nb)
 int			ft_treat_unsigned(va_list p_info, t_flags *flag)
 {
 	int				written_c;
-	unsigned long	nb;
+	unsigned int	nb;
 	int				len_nb;
 
 	written_c = 0;
-	nb = va_arg(p_info, unsigned long int);
+	nb = va_arg(p_info, unsigned int);
 	len_nb = ft_nbrlen(nb, 10, flag);
 	if ((flag->precision && flag->width) || (flag->minus && flag->zero))
 		flag->zero = 0;

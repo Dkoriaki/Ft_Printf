@@ -32,7 +32,7 @@ typedef struct	s_flags
 int				ft_putchar(char c);
 int				ft_putstr(char *str);
 int				ft_atoi(const char *str);
-int				ft_nbrlen(long long int nb, int base, t_flags *flag);
+int				ft_nbrlen(long int nb, int base, t_flags *flag);
 void			ft_putnbr(int nb, t_flags *flag, int len_nb);
 char			*ft_itoa(long long int nb);
 int				ft_width(const char *str);
