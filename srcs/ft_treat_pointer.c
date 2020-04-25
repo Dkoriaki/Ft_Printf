@@ -12,6 +12,21 @@
 
 #include "../includes/libftprintf.h"
 
+int		ft_pointer_len(unsigned long nb, t_flags *flag)
+{
+	int	i;
+
+	i = 0;
+	if (nb == 0)
+		return (flag->precision) ? 0 : 1;
+	while (nb)
+	{
+		nb /= 16;
+		i++;
+	}
+	return (i);
+}
+
 void	ft_putnbr_p(unsigned long nb, t_flags *flag, int len)
 {
 	char	*base;
@@ -83,7 +98,7 @@ int		ft_treat_pointer(va_list p_info, t_flags *flag)
 	written_c = 0;
 	flag->width -= 2;
 	nb = va_arg(p_info, unsigned long int);
-	len_nb = ft_nbrlen(nb, 16, flag);
+	len_nb = ft_pointer_len(nb, flag);
 	if ((flag->precision && flag->width) || (flag->minus && flag->zero))
 		flag->zero = 0;
 	if (!flag->minus)

@@ -73,6 +73,7 @@ void			ft_putnbr_unsigned(long long nb, t_flags *flag, int len_nb);
 int				ft_treat_percent(t_flags *flag);
 int				ft_treat_percent_flag(t_flags *flag);
 
+int				ft_pointer_len(unsigned long nb, t_flags *flag);
 void			ft_putnbr_p(unsigned long pointer, t_flags *flag, int len);
 int				ft_pointer_flags(unsigned long nb, t_flags *flag, int len_nb);
 int				ft_pointer_minus(unsigned long nb, t_flags *flag, int len_nb);
